@@ -1,0 +1,22 @@
+<div class="uk-position-medium uk-position-center uk-overlay uk-overlay-default">
+  <form #f="ngForm" (ngSubmit)="login(f)">
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: mail"></span>
+        <input class="uk-input" type="text" #email="ngModel" ngModel name="email" placeholder="örnek@gmail.com">
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+        <input class="uk-input" type="password" #password="ngModel" ngModel name="password" placeholder="Şifreniz">
+      </div>
+    </div>
+    <button class="btn btn-success" style="width: 100%; margin: 1rem auto;">Giriş Yap</button>
+    <div class="alert alert-danger" *ngIf="messageError">{{messageError}}</div>
+    <br>
+    <button class="btn btn-warning" style="width: 100%;">Şifre Unuttum</button>
+
+  </form>
+</div>

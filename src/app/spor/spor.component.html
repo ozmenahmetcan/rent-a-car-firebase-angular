@@ -1,0 +1,68 @@
+<div class="body">
+  <div class="container">
+    <div class="btn btn-primary" *ngIf="!isUser" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      style="float: left;">Araç Ekle
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Araç Ekle</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #f="ngForm" (ngSubmit)="addproduct(f)">
+              <div class="mb-3">
+                <input type="text" class="form-control" name="title" #title="ngModel" ngModel
+                  id="exampleFormControlInput1" placeholder="Araç Adı">
+              </div>
+              <div class="mb-3">
+                <input type="number" class="form-control" name="price" #price="ngModel" ngModel
+                  id="exampleFormControlInput1" placeholder="Araç Fiyatı">
+              </div>
+              <div class="mb-3">
+                <textarea class="form-control" name="desc" #desc="ngModel" ngModel id="exampleFormControlTextarea1"
+                  rows="3" placeholder="Açıklama"></textarea>
+              </div>
+              <label for="exampleFormControlInput1" class="form-label">Araç Kategorisi</label>
+              <select class="form-select mb-3" name="category" #category="ngModel" ngModel>
+                <option value="sedan">Sedan</option>
+                <option value="suv">Suv</option>
+                <option value="spor">Spor</option>
+              </select>
+              <div class="mb-3">
+                <input type="text" class="form-control" name="image" #image="ngModel" ngModel
+                  id="exampleFormControlInput1" placeholder="Araç Resmi">
+              </div>
+              <div class="alert alert-success" *ngIf="successMessage">{{successMessage}}</div>
+              <button type="submit" class="btn btn-primary">Ekle</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="row">
+      <div class="col col-12 col-md-6 col-lg-3 mb-3" *ngFor="let item of dataArray">
+        <div class="col col-12 col-md-6 col-lg-3">
+          <div class="card" style="width: 19rem; height: 600px">
+            <img class="card-img-top" [src]="item.image" alt="Card image cap">
+            <div class="card-body">
+              <h2 class="card-title">{{item.title}}</h2>
+              <h5 class="card-title">{{item.price}}₺</h5>
+              <p class="card-text">{{item.desc}}</p>
+              <p class="card-text">{{item.category}}</p>
+            </div>
+            <a class="btn btn-primary">Sepete Ekle</a>
+            <a class="btn btn-danger" *ngIf="!isUser" (click)="delete(item.id)">Sil</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

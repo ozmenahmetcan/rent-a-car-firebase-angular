@@ -1,0 +1,61 @@
+<div class="uk-position-medium uk-position-center uk-overlay uk-overlay-default">
+
+  <form #f="ngForm" (ngSubmit)="register(f)">
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: user"></span>
+        <input class="uk-input" type="text" name="flName" #flname="ngModel" required ngModel
+          placeholder="Kullanıcı Adı">
+        <p class="alert alert-danger" *ngIf="flname.errors?.['required'] && flname.touched">Kullanıcı adı gerekiyor</p>
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: mail"></span>
+        <input class="uk-input" type="email" name="email" #email="ngModel" ngModel email required
+          placeholder="E-posta giriniz">
+        <p class="alert alert-danger" *ngIf="email.errors?.['required'] && email.touched">Mailiniz gerekiyor</p>
+        <p class="alert alert-danger" *ngIf="email.errors?.['email'] && email.touched">Geçerli Mail olduğuna dikkat
+          ediniz</p>
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: comment"></span>
+        <textarea class="uk-input" cols="22" rows="10" name="bio" #bio="ngModel" ngModel required
+          placeholder="Hakkınızda"></textarea>
+        <p class="alert alert-danger" *ngIf="bio.errors?.['required'] && bio.touched">Alanı doldurunuz</p>
+
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+        <input class="uk-input" type="password" name="password" #password="ngModel" ngModel required minlength="8"
+          placeholder="Şifre">
+        <p class="alert alert-danger" *ngIf="password.errors?.['required'] && password.touched">Şifre gerekli</p>
+        <p class="alert alert-danger" *ngIf="password.errors?.['minlength'] && password.touched">8 den fazla karkater
+          içermesi gerekiyor</p>
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+        <input class="uk-input" type="password" name="confirmPassword" #confirmPassword="ngModel" ngModel required
+          minlength="8" placeholder="Şifre">
+        <p class="alert alert-danger"
+          *ngIf="confirmPassword.errors?.['required'] && password.errors?.['minlength'] && confirmPassword.touched">
+          Şifrenizi onaylamanız gerekiyor</p>
+        <p class="alert alert-danger" *ngIf="password.value!== confirmPassword.value && password.touched">Şifre
+          uyuşmuyor</p>
+      </div>
+    </div>
+    <button class="btn btn-info" style="width: 100%; margin: 1rem auto;" [disabled]="f.invalid">Kayıt Ol</button>
+    <br>
+
+  </form>
+</div>
